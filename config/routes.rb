@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'registrarse', to: 'devise/registrations#new', as: :registrarse
     get 'iniciar_sesion', to: 'devise/sessions#new', as: :iniciar_sesion
-    get 'salir', to: 'devise/sessions#destroy', as: :salir
+    delete 'salir', to: 'devise/sessions#destroy', as: :salir
   end
 
   resources :statuses
