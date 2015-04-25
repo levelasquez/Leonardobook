@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
 
 	has_many :statuses
 
+	validates :primer_nombre, presence: true
+	validates :primero_apellido, presence: true
+	validates :nombre_perfil, presence: true, uniqueness: true, format: {with: /\A[a-zA-Z0-9_-]+\z/, message: 'Debe estar formateado correctamente.'}
+
 	def nombre_completo
 		primer_nombre + " " + primero_apellido
 	end

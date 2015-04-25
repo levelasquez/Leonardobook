@@ -1,8 +1,18 @@
 Rails.application.routes.draw do
+  get "perfil/show"
   devise_for :users
-  resources :statuses
 
+  devise_scope :user do
+    get 'registrarse', to: 'devise/registrations#new', as: :registrarse
+    get 'iniciar_sesion', to: 'devise/sessions#new', as: :iniciar_sesion
+    get 'salir', to: 'devise/sessions#destroy', as: :salir
+  end
+
+  resources :statuses
+  get 'principal', to: 'statuses#index', as: :principal
   root to: 'statuses#index'
+
+  get '/:id', to: 'perfil#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
